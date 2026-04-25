@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — FurScore</title>
+  <meta name="description" content="FurScore privacy policy. What we collect, how we use it, and your choices.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="site-header">
+      <div class="logo">🐾</div>
+      <div class="brand"><a href="index.html" style="color: inherit;">FurScore</a></div>
+    </header>
+
+    <div class="eyebrow">Privacy Policy</div>
+    <h1>Privacy Policy</h1>
+    <p class="muted"><strong>Effective date:</strong> April 25, 2026 · <strong>Last updated:</strong> April 25, 2026</p>
+
+    <p>FurScore ("we", "our", or "us") is a dog health and wellness tracking app. We respect your privacy and are committed to protecting it. This policy explains what we collect, how we use it, and the choices you have.</p>
+    <p>Questions: <a href="mailto:support@furscore.app">support@furscore.app</a>.</p>
+
+    <div class="card">
+      <h2>TL;DR</h2>
+      <ul>
+        <li>We only collect what's needed to make the app work: your email/name from Apple or Google Sign In, and your dog's health data that you enter.</li>
+        <li>Your data is stored on your device first. If you sign in, it also syncs to our private cloud database (Supabase) so you can use FurScore on multiple devices.</li>
+        <li>We do <strong>not</strong> sell your data, share it with advertisers, or use it for tracking.</li>
+        <li>You can delete your account at any time from inside the app — Settings → Delete Account. Deletion is permanent.</li>
+      </ul>
+    </div>
+
+    <h2>What we collect</h2>
+
+    <h3>From you, when you sign in</h3>
+    <ul>
+      <li>Email address (from Apple Sign In or Google Sign In)</li>
+      <li>Display name (from Apple Sign In or Google Sign In, if you choose to share it)</li>
+      <li>A unique user identifier issued by our authentication service (Supabase)</li>
+    </ul>
+    <p>You can use FurScore without signing in — in that case, no personal information is collected and your data stays only on your device.</p>
+
+    <h3>From you, when you use the app</h3>
+    <ul>
+      <li>Your dog's profile (name, breed, date of birth, gender, color, microchip ID if entered)</li>
+      <li>Daily wellness logs (energy, mood, appetite, digestion, activity, symptoms, walk minutes, sleep hours, free-text notes)</li>
+      <li>Weight entries</li>
+      <li>Medications, vaccinations, and vet visits you record</li>
+      <li>Photos you take or upload (dog photos, paw prints)</li>
+      <li>Free-text notes you write</li>
+    </ul>
+
+    <h3>Automatically</h3>
+    <ul>
+      <li>Crash logs that Apple's standard crash reporting may share with us. We do not use any third-party analytics or tracking SDKs.</li>
+    </ul>
+
+    <h2>How we use it</h2>
+    <ul>
+      <li><strong>App functionality.</strong> All data we collect is used to deliver features you asked for: showing your dog's wellness, syncing across your devices, sending reminders.</li>
+      <li><strong>Across devices.</strong> If you sign in, your data syncs through our database (Supabase) so it appears on your other phones / iPads.</li>
+      <li><strong>Local notifications.</strong> Medication and vaccination reminders are scheduled on your device using iOS's UserNotifications framework. The data never leaves your phone for this purpose.</li>
+    </ul>
+    <p>We do <strong>not</strong> use your data for: advertising, tracking across apps or websites, selling to third parties, or profiling beyond the app.</p>
+
+    <h2>Where your data is stored</h2>
+    <ul>
+      <li><strong>On your device</strong> — using Apple's SwiftData. This includes everything you enter, even when not signed in.</li>
+      <li><strong>In our private cloud (Supabase)</strong> — only when you're signed in. Your data is protected by row-level security so no other user can read or write your records. The provider (Supabase, Inc.) hosts the database; we are the data controller.</li>
+    </ul>
+
+    <h2>Sign-in providers</h2>
+    <ul>
+      <li><strong>Apple's Sign in with Apple</strong> — Apple may share an email (real or anonymized "private relay") and an opaque user ID with us. See <a href="https://www.apple.com/legal/privacy/data/en/sign-in-with-apple/" target="_blank" rel="noopener">Apple's privacy disclosures</a>.</li>
+      <li><strong>Google Sign-In</strong> — Google may share your email and basic profile info. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</li>
+    </ul>
+    <p>We only request the minimum scopes needed (email + name).</p>
+
+    <h2>Children</h2>
+    <p>FurScore is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+    <h2>Your rights</h2>
+    <ul>
+      <li><strong>Access</strong> — see your data anytime in the app, or use Settings → Export Data to download a JSON copy.</li>
+      <li><strong>Deletion</strong> — Settings → Delete Account removes your account and all server-side data permanently. Data on your device persists until you delete the app.</li>
+      <li><strong>Correction</strong> — edit any record directly in the app. Changes sync back to the cloud when you're signed in.</li>
+    </ul>
+    <p>If you live in a jurisdiction with additional rights (GDPR, CCPA), contact us at <a href="mailto:support@furscore.app">support@furscore.app</a> and we'll honor any verifiable request.</p>
+
+    <h2>Data retention</h2>
+    <ul>
+      <li>While you have an account, we keep your data so you can use the app.</li>
+      <li>When you delete your account, we delete it within <strong>30 days</strong> from active systems and from operational backups. Deletion is automatic via cascading database constraints — no manual review or "soft delete."</li>
+      <li>If you don't sign in, no data is retained on our servers.</li>
+    </ul>
+
+    <h2>Security</h2>
+    <ul>
+      <li>Data in transit is protected by TLS.</li>
+      <li>Database access is enforced by row-level security: every request must include your authenticated user ID, and policies prevent reading any other user's rows.</li>
+      <li>Photos are stored in private storage buckets with per-user folder access.</li>
+      <li>We do not have access to your password — sign-in is delegated to Apple or Google.</li>
+    </ul>
+    <p>No system is perfectly secure. If we ever experience a breach affecting your data, we will notify you within 72 hours.</p>
+
+    <h2>Third parties</h2>
+    <p>We use the following service providers to operate the app:</p>
+    <ul>
+      <li><strong>Supabase, Inc.</strong> — hosts our database, authentication, and file storage. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Privacy policy</a>.</li>
+      <li><strong>Apple, Inc.</strong> — App Store distribution, Sign in with Apple, push notification infrastructure (we use local notifications only, not push).</li>
+      <li><strong>Google LLC</strong> — Sign in with Google.</li>
+    </ul>
+    <p>We do not share your data with any other third parties.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy as the app evolves. The "Last updated" date at the top will change. Material changes will be communicated in-app before they take effect.</p>
+
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:support@furscore.app">support@furscore.app</a></p>
+
+    <footer>
+      <div>© 2026 FurScore</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="mailto:support@furscore.app">Contact</a>
+      </nav>
+    </footer>
+  </main>
+</body>
+</html>
