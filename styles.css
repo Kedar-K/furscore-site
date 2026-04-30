@@ -72,7 +72,7 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-a { color: var(--primary-dark); text-decoration: none; }
+a { color: var(--primary-dark); text-decoration: none; transition: color 0.15s ease; }
 a:hover { color: var(--primary); }
 
 img { max-width: 100%; display: block; }
@@ -231,9 +231,10 @@ h1 {
 }
 .lede {
   font-size: 18px;
+  line-height: 1.65;
   color: var(--muted);
   max-width: 540px;
-  margin: 0 0 28px;
+  margin: 0 0 32px;
 }
 .cta-row {
   display: flex;
@@ -319,7 +320,8 @@ h1 {
   display: block;
   width: 100%;
 }
-.phone-frame-sm { width: 240px; transform: rotate(0); }
+/* phone-frame-sm: base dimensions used in showcase (fluid override applied in .showcase-item context) */
+.phone-frame-sm { width: 200px; transform: rotate(0); }
 
 /* ===== Sections ===== */
 section { padding: 96px 0; }
@@ -333,11 +335,15 @@ section { padding: 96px 0; }
   margin: 0 0 16px;
   text-wrap: balance;
 }
-.section-lede { text-wrap: pretty; }
 .section-lede {
   color: var(--muted);
   font-size: 17px;
+  line-height: 1.65;
   margin: 0;
+  text-wrap: pretty;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===== Features grid ===== */
@@ -362,6 +368,7 @@ section { padding: 96px 0; }
   border: 1px solid var(--line-strong);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   overflow: hidden;
+  will-change: transform;
 }
 .feature-card::before {
   content: "";
@@ -403,12 +410,13 @@ section { padding: 96px 0; }
 /* Hero trust dots — small color tokens beside each item */
 .trust-dot {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  margin-right: 8px;
+  margin-right: 7px;
   vertical-align: middle;
-  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 8%, transparent);
+  /* Use a transparent background-based ring so the ring color matches the dot */
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
 }
 .feature-card h3 {
   font-size: 18px;
@@ -424,11 +432,18 @@ section { padding: 96px 0; }
 }
 
 /* ===== Showcase strip ===== */
-.showcase { background: var(--bg); }
+.showcase {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 112px 0;
+}
 .showcase-strip {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
+  gap: 20px;
+  /* Align all rows from the top so phones share the same baseline */
+  align-items: start;
 }
 .showcase-item {
   margin: 0;
@@ -436,24 +451,68 @@ section { padding: 96px 0; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
+  /* No gap — we control spacing precisely below */
+}
+/* Phone wrapper: fixed aspect ratio locks height regardless of image load state */
+.showcase-item .phone-frame-sm {
+  width: 100%;
+  max-width: 200px;
+  /* iPhone aspect ratio 1284:2778 ≈ 9:19.47 */
+  aspect-ratio: 1284 / 2778;
+  transform: none;
+  /* Subtle elevation so phones read as objects */
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+:root[data-theme="light"] .showcase-item .phone-frame-sm {
+  box-shadow:
+    0 16px 48px rgba(13, 17, 23, 0.20),
+    0 0 0 1px rgba(13, 17, 23, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+.showcase-item .phone-frame-sm:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(0, 201, 167, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+:root[data-theme="light"] .showcase-item .phone-frame-sm:hover {
+  box-shadow:
+    0 28px 64px rgba(13, 17, 23, 0.26),
+    0 0 40px rgba(0, 201, 167, 0.14),
+    0 0 0 1px rgba(13, 17, 23, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 .showcase-item figcaption {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  /* Fixed height so caption variation never pushes phones up/down.
+     Two-line caption at 13px/1.4 = ~36px + title line ~21px + gap 4px + margin 16px = ~77px.
+     We give it enough room for 2 caption lines without affecting phone position. */
+  min-height: 72px;
+  margin-top: 16px;
+  padding: 0 4px;
 }
 .showcase-item strong {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--ink);
+  letter-spacing: -0.01em;
+  display: block;
 }
 .showcase-item span {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--muted);
-  line-height: 1.4;
+  line-height: 1.45;
+  text-wrap: balance;
+  display: block;
 }
-.showcase-item .phone-frame { transform: rotate(0); }
 
 /* ===== Designed with Care ===== */
 .craft-section {
@@ -563,6 +622,7 @@ section { padding: 96px 0; }
   text-align: center;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
 }
 .trust-card::before {
   content: "";
@@ -576,8 +636,9 @@ section { padding: 96px 0; }
   background: linear-gradient(180deg, rgba(0,201,167,0.04) 0%, transparent 40%);
 }
 .trust-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
+  border-color: rgba(0, 201, 167, 0.28);
 }
 .trust-card h3 {
   font-size: 18px;
@@ -679,8 +740,18 @@ section { padding: 96px 0; }
   .cta-row { justify-content: center; }
   .trust-row { justify-content: center; }
   section { padding: 72px 0; }
+  .showcase { padding: 88px 0; }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
-  .showcase-strip { grid-template-columns: repeat(2, 1fr); }
+  /* Tablet: show 3 phones per row so each is still legible */
+  .showcase-strip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  /* Hide the 4th and 5th showcase items on tablet to keep 3-up clean */
+  .showcase-item:nth-child(4),
+  .showcase-item:nth-child(5) {
+    display: none;
+  }
   .trust-grid { grid-template-columns: 1fr; }
   .craft-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { flex-direction: column; gap: 20px; }
@@ -690,12 +761,28 @@ section { padding: 96px 0; }
   .topnav-links { gap: 16px; }
   .topnav-links a { font-size: 14px; }
   .feature-grid { grid-template-columns: 1fr; }
-  .showcase-strip { grid-template-columns: 1fr; gap: 32px; }
+  /* Mobile: 2-column phone grid — shows all 5 with last one centered */
+  .showcase-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  /* Restore all items on mobile */
+  .showcase-item:nth-child(4),
+  .showcase-item:nth-child(5) {
+    display: flex;
+  }
+  /* Center the lone 5th item */
+  .showcase-item:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .showcase-item figcaption { min-height: 60px; }
   .craft-grid { grid-template-columns: 1fr; gap: 24px; }
   .faq-item summary { padding: 18px 20px; font-size: 15px; padding-right: 48px; }
   .faq-item summary::after { right: 18px; }
   .faq-item p { padding: 0 20px 20px; font-size: 14.5px; }
   .waitlist-card { padding: 48px 24px; }
   .phone-frame { width: 280px; }
-  .phone-frame-sm { width: 220px; }
+  .showcase { padding: 72px 0; }
 }
