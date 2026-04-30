@@ -7,6 +7,19 @@
   <meta name="description" content="Track your dog's wellness in 10 seconds a day. A real Health Score, breed-aware insights, and smart reminders for meds and vaccines. Built for dogs only.">
   <meta name="theme-color" content="#0D1117">
 
+  <!-- Set theme BEFORE the page renders to avoid a flash of the wrong theme. -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('furscore-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+        // No saved preference -> let CSS default (dark) take over.
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:title" content="FurScore — Your dog's health, scored daily">
   <meta property="og:description" content="Track your dog's wellness in 10 seconds a day. Breed-aware insights for 80+ breeds.">
@@ -32,6 +45,10 @@
         <a href="#features">Features</a>
         <a href="#privacy">Privacy</a>
         <a href="mailto:furscoreapp@gmail.com">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 13.5A9 9 0 1 1 10.5 3a7 7 0 0 0 10.5 10.5z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -355,6 +372,19 @@
       <span>© 2026 FurScore. All rights reserved.</span>
     </div>
   </footer>
+
+  <script>
+    (function() {
+      var btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('furscore-theme', next); } catch (e) {}
+      });
+    })();
+  </script>
 
 </body>
 </html>
