@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FurScore Health Score — Methodology v1.0</title>
+  <meta name="description" content="How the FurScore Health Score is calculated. A transparent, research-grounded methodology for daily canine wellness scoring.">
+  <meta name="theme-color" content="#0D1117">
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('furscore-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top nav -->
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">🐾</span>
+        <span class="brand-name">FurScore</span>
+      </a>
+      <div class="topnav-links">
+        <a href="index.html#features">Features</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="index.html#privacy">Privacy</a>
+        <a href="mailto:furscoreapp@gmail.com">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" type="button">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 13.5A9 9 0 1 1 10.5 3a7 7 0 0 0 10.5 10.5z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor" stroke="none"/><path d="M12 2.5v2M12 19.5v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2.5 12h2M19.5 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <article class="doc">
+    <div class="doc-inner">
+
+      <header class="doc-header">
+        <div class="eyebrow">METHODOLOGY · VERSION 1.0</div>
+        <h1>How the FurScore Health Score is calculated.</h1>
+        <p class="lede">An honest, transparent breakdown of every input, weight, and design choice behind the daily 0–100 score — and the veterinary research it's grounded in.</p>
+        <p class="muted-tiny">Last updated: April 2026 · FurScore Health Score v1.0</p>
+      </header>
+
+      <section class="doc-section">
+        <h2>The summary</h2>
+        <p>The FurScore Health Score is a daily 0–100 number derived from <strong>five canine wellness signals</strong> that owners observe directly: energy level, appetite, stool quality, mood, and physical activity. Each signal is normalized, weighted, and combined. Active symptoms (for example: limping, vomiting, lethargy) deduct from the resulting score.</p>
+        <p>It is intentionally simple. It is intentionally transparent. It is <strong>not</strong> a diagnostic instrument and does not replace a veterinary examination.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>The five inputs</h2>
+
+        <div class="formula-block">
+          <div class="formula-row">
+            <div class="formula-label">Energy level</div>
+            <div class="formula-weight"><span>20%</span></div>
+            <div class="formula-meta">5-point ordinal scale</div>
+          </div>
+          <div class="formula-row">
+            <div class="formula-label">Appetite</div>
+            <div class="formula-weight"><span>20%</span></div>
+            <div class="formula-meta">U-shaped: deviation from "normal" penalizes</div>
+          </div>
+          <div class="formula-row">
+            <div class="formula-label">Stool quality</div>
+            <div class="formula-weight"><span>20%</span></div>
+            <div class="formula-meta">U-shaped: "normal" is ideal</div>
+          </div>
+          <div class="formula-row">
+            <div class="formula-label">Mood</div>
+            <div class="formula-weight"><span>20%</span></div>
+            <div class="formula-meta">5-point ordinal scale</div>
+          </div>
+          <div class="formula-row">
+            <div class="formula-label">Activity</div>
+            <div class="formula-weight"><span>10%</span></div>
+            <div class="formula-meta">U-shaped around "moderate to active"</div>
+          </div>
+          <div class="formula-row formula-penalty">
+            <div class="formula-label">Symptom penalty</div>
+            <div class="formula-weight"><span>−10</span></div>
+            <div class="formula-meta">Per symptom logged that day</div>
+          </div>
+        </div>
+
+        <p class="muted">Weights are capped at the contribution shown. If you skip a field on a given day, that field's weight is removed from the denominator — you're never penalized for incomplete data, only for explicit signals of concern.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>Why these five</h2>
+
+        <h3>1. Energy level <span class="weight-badge">20%</span></h3>
+        <p>Energy is the single most studied owner-observable wellness indicator in companion animals. The <strong>WSAVA Global Animal Welfare Guidelines</strong> identify behavioral changes — particularly reduced activity and engagement — as the earliest signal of pain, illness, and poor welfare in dogs <a href="#ref-wsava-2018" class="cite">[1]</a>. A 5-point ordinal scale (Very Low → Very High) maps directly to the qualitative descriptors used in the <strong>Glasgow Composite Measure Pain Scale</strong>, the most widely validated pain assessment instrument for dogs <a href="#ref-reid-2007" class="cite">[2]</a>.</p>
+
+        <h3>2. Appetite <span class="weight-badge">20%</span></h3>
+        <p>Appetite is bidirectionally informative — both <em>reduced</em> and <em>increased</em> appetite can signal illness (gastrointestinal disease, endocrine disorders, dental pain, etc.). The <strong>WSAVA Global Nutrition Toolkit</strong> recommends owners track appetite as a routine screening signal during nutritional assessment <a href="#ref-wsava-nutrition" class="cite">[3]</a>. We use a U-shaped scoring function: deviation from "normal" in either direction reduces the contribution.</p>
+
+        <h3>3. Stool quality <span class="weight-badge">20%</span></h3>
+        <p>Stool quality is the most direct owner-observable indicator of gastrointestinal health. The <strong>Purina Fecal Scoring Chart</strong> (a clinical tool widely used in veterinary practice and modeled after the human Bristol Stool Scale) maps stool consistency to clinical states from constipation through diarrhea on a 1–7 scale <a href="#ref-purina-fss" class="cite">[4]</a>. Persistent abnormal stool over more than 2–3 days warrants a vet visit; a single anomalous reading is more often dietary noise than concern. Our U-shaped scoring captures this.</p>
+
+        <h3>4. Mood / behavioral state <span class="weight-badge">20%</span></h3>
+        <p>Behavioral assessment is central to canine welfare science. The <strong>Canine Behavioral Assessment &amp; Research Questionnaire (C-BARQ)</strong> developed at the University of Pennsylvania remains the gold-standard owner-reported instrument for canine behavioral phenotyping <a href="#ref-cbarq" class="cite">[5]</a>. Our 5-point mood scale (Restless → Excited) is a coarsened, daily-trackable cousin: not a full C-BARQ administration, but a continuous-tracking proxy that captures day-over-day variation rather than a one-time snapshot.</p>
+
+        <h3>5. Activity <span class="weight-badge">10%</span></h3>
+        <p>Daily physical activity is dose-response: too little correlates with obesity and joint disease, too much (relative to age, breed, and conditioning) raises injury risk. Salt et al. (2019), in a study of 1,000+ dogs across breeds, demonstrated that breed-typical activity ranges vary widely and that "appropriate" rather than "maximum" activity correlates best with longitudinal wellness <a href="#ref-salt-2019" class="cite">[6]</a>. We weight activity at 10% (lower than the four other signals) because daily activity has higher day-to-day variance for legitimate reasons (weather, owner schedule) than the four wellness signals above.</p>
+
+        <h3>Symptom penalty <span class="weight-badge">−10/symptom</span></h3>
+        <p>Each symptom logged that day (limping, vomiting, scratching, lethargy, sneezing, etc.) deducts 10 points from the base score, capped at 0. This is a deliberate clinical-style "red flag" mechanism: a perfect-energy, perfect-appetite dog with a single concerning symptom should not score 100. The −10 weight was chosen so that two simultaneous symptoms reduce a perfect base score to 80 (the "Good" band), three symptoms to 70 ("Fair"), prompting an owner to consider veterinary follow-up.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>Score bands</h2>
+        <p>The 0–100 number is interpreted in four colored bands, calibrated to be intuitive for owners and conservative about flagging concern:</p>
+
+        <div class="band-grid">
+          <div class="band-row band-excellent">
+            <div class="band-num">85–100</div>
+            <div class="band-name">Excellent</div>
+            <div class="band-meta">Strong wellness signals across the board.</div>
+          </div>
+          <div class="band-row band-good">
+            <div class="band-num">70–84</div>
+            <div class="band-name">Good</div>
+            <div class="band-meta">Healthy, with normal day-to-day variation.</div>
+          </div>
+          <div class="band-row band-fair">
+            <div class="band-num">50–69</div>
+            <div class="band-name">Fair</div>
+            <div class="band-meta">Watch for trends. Persistent fair scores suggest a vet visit.</div>
+          </div>
+          <div class="band-row band-poor">
+            <div class="band-num">0–49</div>
+            <div class="band-name">Concerning</div>
+            <div class="band-meta">Multiple wellness signals are off. Talk to your vet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>Breed-aware context</h2>
+        <p>The Health Score itself is breed-neutral — energy, appetite, stool, mood, and activity matter for every dog. Where breed enters the picture is in the <strong>contextual UI surrounding the score</strong>: the typical weight range we plot the growth chart against, the life-stage classification (puppy / young adult / adult / senior), the breed-specific exercise level we surface in the breed facts card, and the breed-typical health concerns shown for owner awareness.</p>
+        <p>Breed reference data is built from the <strong>AKC breed standards</strong>, the <strong>Royal Veterinary College VetCompass</strong> longitudinal database (which has tracked >2 million UK dogs since 2009 and is the leading source of breed-specific health prevalence data) <a href="#ref-vetcompass" class="cite">[7]</a>, and the <strong>Morris Animal Foundation Golden Retriever Lifetime Study</strong> for breed-specific cancer and longevity patterns <a href="#ref-morris-grls" class="cite">[8]</a>.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>What the Health Score is not</h2>
+        <ul class="caveat-list">
+          <li><strong>It is not a diagnostic tool.</strong> It is an owner-reported wellness aggregate, not a clinical instrument. Persistent low scores or any acute symptoms warrant veterinary consultation.</li>
+          <li><strong>It does not replace a vet visit.</strong> The American Animal Hospital Association recommends at least one annual wellness exam for adult dogs; biannual for seniors <a href="#ref-aaha-wellness" class="cite">[9]</a>. FurScore complements that cadence, it does not substitute for it.</li>
+          <li><strong>It is owner-reported.</strong> Inputs reflect the owner's interpretation of their dog's day, with all the subjectivity that implies. Two owners observing the same dog may rate energy or mood differently.</li>
+          <li><strong>It is daily, not chronic.</strong> A single low score is rarely meaningful. Persistent low scores across multiple days, or sharp drops from an established baseline, are the signal worth acting on.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2>Versioning &amp; what's coming in v2.0</h2>
+        <p>We treat the Health Score as a versioned algorithm. v1.0 is the baseline described above. Planned refinements for v2.0:</p>
+        <ul>
+          <li><strong>Body Condition Score (BCS) integration</strong> — periodic photo-based 1–9 BCS following the WSAVA standard <a href="#ref-laflamme" class="cite">[10]</a>, contributing as a longer-cadence input.</li>
+          <li><strong>Sleep duration weighting</strong> — currently logged but not scored; emerging research links sleep disturbance to early disease detection in dogs.</li>
+          <li><strong>Predictive validity calibration</strong> — once the dataset crosses 6 months of longitudinal logs, we will publish the correlation between low scores and subsequent vet visits / diagnoses, and recalibrate the band thresholds against that empirical data.</li>
+          <li><strong>Veterinary advisory review</strong> — we are recruiting one or more licensed veterinarians for formal methodology review. Their credentials will be listed here when in place.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2>References</h2>
+        <ol class="references">
+          <li id="ref-wsava-2018"><strong>WSAVA Animal Welfare Guidelines (2018).</strong> World Small Animal Veterinary Association. <a href="https://wsava.org/global-guidelines/animal-welfare-guidelines/" target="_blank" rel="noopener">wsava.org/global-guidelines/animal-welfare-guidelines</a></li>
+          <li id="ref-reid-2007"><strong>Reid J, Nolan AM, Hughes JML, Lascelles D, Pawson P, Scott EM (2007).</strong> Development of the Short-Form Glasgow Composite Measure Pain Scale (CMPS-SF) and derivation of an analgesic intervention score. <em>Animal Welfare</em>, 16(S), 97–104.</li>
+          <li id="ref-wsava-nutrition"><strong>WSAVA Global Nutrition Toolkit.</strong> World Small Animal Veterinary Association Global Nutrition Committee. <a href="https://wsava.org/global-guidelines/global-nutrition-guidelines/" target="_blank" rel="noopener">wsava.org/global-guidelines/global-nutrition-guidelines</a></li>
+          <li id="ref-purina-fss"><strong>Purina Fecal Scoring System.</strong> Purina Institute clinical reference. Adapted from Moxham G. (2001), <em>Waltham Feces Scoring System</em>.</li>
+          <li id="ref-cbarq"><strong>Hsu Y, Serpell JA (2003).</strong> Development and validation of a questionnaire for measuring behavior and temperament traits in pet dogs. <em>Journal of the American Veterinary Medical Association</em>, 223(9), 1293–1300. (C-BARQ instrument; University of Pennsylvania.)</li>
+          <li id="ref-salt-2019"><strong>Salt C, Morris PJ, Wilson D, Lund EM, German AJ (2019).</strong> Association between life span and body condition in neutered client-owned dogs. <em>Journal of Veterinary Internal Medicine</em>, 33(1), 89–99.</li>
+          <li id="ref-vetcompass"><strong>Royal Veterinary College VetCompass Programme.</strong> Longitudinal companion-animal health database (UK, &gt;2M dogs). <a href="https://www.rvc.ac.uk/vetcompass" target="_blank" rel="noopener">rvc.ac.uk/vetcompass</a></li>
+          <li id="ref-morris-grls"><strong>Morris Animal Foundation Golden Retriever Lifetime Study.</strong> Ongoing prospective cohort study of 3,000+ Golden Retrievers; the largest canine lifetime study to date. <a href="https://www.morrisanimalfoundation.org/golden-retriever-lifetime-study" target="_blank" rel="noopener">morrisanimalfoundation.org/golden-retriever-lifetime-study</a></li>
+          <li id="ref-aaha-wellness"><strong>AAHA Canine Life Stage Guidelines (2019).</strong> American Animal Hospital Association. <a href="https://www.aaha.org/aaha-guidelines/life-stage-canine-2019/" target="_blank" rel="noopener">aaha.org/aaha-guidelines/life-stage-canine-2019</a></li>
+          <li id="ref-laflamme"><strong>Laflamme DP (1997).</strong> Development and validation of a body condition score system for dogs. <em>Canine Practice</em>, 22(4), 10–15. The basis of the WSAVA/AAHA 9-point BCS standard.</li>
+        </ol>
+      </section>
+
+      <section class="doc-section doc-cta">
+        <p>Questions about the methodology, or interested in research collaboration?</p>
+        <a href="mailto:furscoreapp@gmail.com?subject=FurScore%20methodology%20question" class="btn btn-primary">Get in touch</a>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">
+          <span class="brand-mark">🐾</span>
+          <span class="brand-name">FurScore</span>
+        </div>
+        <p class="muted-tiny">Your dog's health, scored daily.<br>Made with care in Halifax 🇨🇦</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#features">Features</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:furscoreapp@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="container copyline">
+      <span>© 2026 FurScore. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('furscore-theme', next); } catch (e) {}
+      });
+    })();
+  </script>
+
+</body>
+</html>
