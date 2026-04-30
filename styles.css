@@ -253,17 +253,36 @@ section { padding: 96px 0; }
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
+.feature-icon { /* legacy alias */ }
+
+/* ===== Reusable icon tile ===== */
+.icon-tile {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
-  box-shadow: 0 6px 16px rgba(13,17,23,0.12);
+  background: linear-gradient(135deg, var(--tint, #00C9A7), color-mix(in srgb, var(--tint, #00C9A7) 78%, black));
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--tint, #00C9A7) 35%, transparent);
 }
-.feature-icon svg { width: 24px; height: 24px; }
+.icon-tile svg { width: 26px; height: 26px; display: block; }
+.icon-tile-sm { width: 48px; height: 48px; border-radius: 12px; }
+.icon-tile-sm svg { width: 24px; height: 24px; }
+.icon-tile-lg { width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 18px; }
+.icon-tile-lg svg { width: 30px; height: 30px; }
+
+/* Hero trust dots — small color tokens beside each item */
+.trust-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 8%, transparent);
+}
 .feature-card h3 {
   font-size: 18px;
   font-weight: 700;
@@ -324,17 +343,7 @@ section { padding: 96px 0; }
 .craft-item {
   text-align: center;
 }
-.craft-pill {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  background: var(--primary-soft);
-  border-radius: 16px;
-}
+.craft-item .icon-tile { margin: 0 auto 14px; }
 .craft-item h4 {
   font-size: 17px;
   font-weight: 700;
@@ -424,10 +433,6 @@ section { padding: 96px 0; }
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
   text-align: center;
-}
-.trust-glyph {
-  font-size: 36px;
-  margin-bottom: 16px;
 }
 .trust-card h3 {
   font-size: 18px;
